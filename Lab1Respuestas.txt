@@ -1,0 +1,29 @@
+Primera parte
+3.b. ¿Qué tipos de archivos se encuentran en la carpeta dist?
+Se encuentran los siguientes archvos:
+-Laboratorio1.X.production.elf
+
+-Laboratorio1.X.production.hex
+
+-Laboratorio1.X.production.map
+
+-memoryfile.xml
+
+3.c ¿Qué tamaño ocupan en la memoria y en qué direcciones están alojadas?
+exampleArray ocupa 12 bytes de memoria y esta alojada en la siguiente direccion: 0x80000004
+exampleData ocupa 4 bytes de memoria y esta alojada en la siguiente direccion: 0x80000000
+
+3.d Cambia el espacio de memoria de la variable, de 12 a 10 bytes, pero la direccion sigue siendo la misma.
+
+Segunda Parte
+1.d
+La otra manera de hacerlo es:
+#define LEDA_SetDigitalOutput() (TRISA = 0x0000FF7F)
+#define LEDB_SetDigitalOutput() (TRISB = 0x00007FFF)
+
+3.b ¿Qué registros y qué valores toman al Encender/Apagar los leds?
+LATB tiene el valor de 0x00004000 al estar encendido
+LATB tiene el valor de 0x00000000 al estar apagado
+
+LATA tiene el valor de 0x00000080 al estar encendido
+LATA tiene el valor de 0x00000000 al estar apagado
