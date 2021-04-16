@@ -27,3 +27,8 @@ LATB tiene el valor de 0x00000000 al estar apagado
 
 LATA tiene el valor de 0x00000080 al estar encendido
 LATA tiene el valor de 0x00000000 al estar apagado
+
+3.d 
+¿Qué otras formas se les ocurren para poder
+estimar el tiempo que demora la función UT_delay?
+...
