@@ -1,4 +1,19 @@
 Primera parte
+
+2.c Configuración elegida:
+Algunos de los bits de la configuración:
+
+SWDTPS = PS1048576    Postscale de watchodg timer en sleep    (1:1048576)
+WINDIS = OFF          Windowed Watchdog Timer Disable bit ( queda habilitada con esta configuración)
+RWDTPS = PS1048576    Postscale del Run Mode Watchdog Timer bits (1:1048576)
+RCLKSEL = LPRC        COnfiguracion del reloj utilizado por el Watchdog timer
+FWDTEN = OFF          Watchdog Timer deshabilitado
+
+FNOSC = FRCDIV          Configuración del oscilador utilizado, en este caso FRC
+OSCIOFNC = ON           Bit de habilitación de CLKO. En este caso el reloj esta conectado al pin CLKO/OSC2
+SOSCSEL = OFF		Oscilador externo inhabilitado
+
+
 3.b. ¿Qué tipos de archivos se encuentran en la carpeta dist?
 Se encuentran los siguientes archvos:
 -Laboratorio1.X.production.elf
@@ -31,4 +46,8 @@ LATA tiene el valor de 0x00000000 al estar apagado
 3.d 
 ¿Qué otras formas se les ocurren para poder
 estimar el tiempo que demora la función UT_delay?
-...
+Parte 3d.
+Analizar la funcion delay entrando al codigo de assembly, para ver cuantas líneas de codigo se utilizan.
+Conociendo la frecuencia del oscilador del procesador se puede conocer el tiempo en procesar cada línea de código, y así obtener el tiempo que demora el delay.
+Multiplicando la cantidad de ciclos de la funcion delay (500) con la cantidad de líneas de codigo de assembly utilizadas para cada ciclo y con la frecuencia 
+del reloj, se obtiene el tiempo que demora la función UT_delay.
