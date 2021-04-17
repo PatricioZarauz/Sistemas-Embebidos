@@ -1,6 +1,30 @@
+﻿Laboratorio 1 2021 - Sistemas Embebidos
+Integrantes del equipo:
+	- Patricio Zarauz
+	- Gastón Salustio
+	- Sebastián Reynosa
+
 Primera parte
+
+1.b
+El árbol de directorios creado por el navegador del proyecto, contiene las siguientes carpetas: 
+
+Header Files: Es donde se guardan todos los archivos ".h", donde se declaran todas las constantes y funciones a implementar en el archivo ".c".
+
+Important Files: En esta carpeta se guardan los archivos importantes como para poder compilar de manera adecuada el proyecto, acá podemos encontrar por defecto al 
+Makefile, archivo que le indica al compilador las configuraciones a tener encuenta. 
+
+Linker Files: En esta carpeta se guardan los linker files, que son archivos que ayudan a unir un objeto de módulos del programa en un solo archivo de objeto.
+
+Source Files: En esta carpeta se guardan todos los archivos ".c" que son los que contienen el código a ejecutar las funciones declaradas en él ".h".
+
+Libraries: En esta carpeta podemos guardar todas las librerías extras que necesite nuestro programa.
+
+Loadables: En esta carpeta se podrá guardar los archivos hex.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 3.b. ¿Qué tipos de archivos se encuentran en la carpeta dist?
-Se encuentran los siguientes archvos:
+Se encuentran los siguientes archivos:
 -Laboratorio1.X.production.elf
 
 -Laboratorio1.X.production.hex
@@ -9,11 +33,17 @@ Se encuentran los siguientes archvos:
 
 -memoryfile.xml
 
-3.c ¿Qué tamaño ocupan en la memoria y en qué direcciones están alojadas?
-exampleArray ocupa 12 bytes de memoria y esta alojada en la siguiente direccion: 0x80000004
-exampleData ocupa 4 bytes de memoria y esta alojada en la siguiente direccion: 0x80000000
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-3.d Cambia el espacio de memoria de la variable, de 12 a 10 bytes, pero la direccion sigue siendo la misma.
+3.c ¿Qué tamaño ocupan en la memoria y en qué direcciones están alojadas?
+exampleArray ocupa 12 bytes de memoria y esta alojada en la siguiente dirección: 0x80000004
+exampleData ocupa 4 bytes de memoria y esta alojada en la siguiente dirección: 0x80000000
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.d Cambia el espacio de memoria de la variable, de 12 a 10 bytes, pero la dirección sigue siendo la misma.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Segunda Parte
 1.d
@@ -21,9 +51,13 @@ La otra manera de hacerlo es:
 #define LEDA_SetDigitalOutput() (TRISA = 0x0000FF7F)
 #define LEDB_SetDigitalOutput() (TRISB = 0x00007FFF)
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 3.b ¿Qué registros y qué valores toman al Encender/Apagar los leds?
 LATB tiene el valor de 0x00004000 al estar encendido
 LATB tiene el valor de 0x00000000 al estar apagado
 
 LATA tiene el valor de 0x00000080 al estar encendido
 LATA tiene el valor de 0x00000000 al estar apagado
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
