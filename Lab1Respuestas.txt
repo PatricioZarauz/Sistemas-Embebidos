@@ -23,6 +23,29 @@ Libraries: En esta carpeta podemos guardar todas las librerías extras que neces
 Loadables: En esta carpeta se podrá guardar los archivos hex.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+1.d Analizar el archivo generado: secciones, formato de comentarios, etc
+
+Los comentarios están separados por 5 secciones (orden de principio a fin): descripción del archivo, archivos a incluir, data global, funciones locales, funciones de interfaz y fin de archivo.
+El formato de los comentarios utilizado es el de javadoc, que permite comentar todo el programa y al mismo tiempo generar documentación para el software.
+En este archivo genérico generado, se muestran también funciones de ejemplo, para que el usuario tenga una idea del formato que deben utilizar las mismas. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.c Configuración elegida:
+Algunos de los bits de la configuración:
+
+SWDTPS = PS1048576    Postscale de watchodg timer en sleep (1:1048576)
+WINDIS = OFF          Windowed Watchdog Timer Disable bit (queda habilitada con esta configuración)
+RWDTPS = PS1048576    Postscale del Run Mode Watchdog Timer bits (1:1048576)
+RCLKSEL = LPRC        Configuracion del reloj utilizado por el Watchdog timer
+FWDTEN = OFF          Watchdog Timer deshabilitado
+
+FNOSC = FRCDIV          Configuración del oscilador utilizado, en este caso FRC
+OSCIOFNC = ON           Bit de habilitación de CLKO. En este caso el reloj esta conectado al pin CLKO/OSC2
+SOSCSEL = OFF		Oscilador externo inhabilitado
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 3.b. ¿Qué tipos de archivos se encuentran en la carpeta dist?
 Se encuentran los siguientes archivos:
 -Laboratorio1.X.production.elf
@@ -46,7 +69,7 @@ exampleData ocupa 4 bytes de memoria y esta alojada en la siguiente dirección: 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Segunda Parte
-1.d
+1.d ¿Cómo sería la otra forma de utilizar el union?
 La otra manera de hacerlo es:
 #define LEDA_SetDigitalOutput() (TRISA = 0x0000FF7F)
 #define LEDB_SetDigitalOutput() (TRISB = 0x00007FFF)
@@ -61,3 +84,17 @@ LATA tiene el valor de 0x00000080 al estar encendido
 LATA tiene el valor de 0x00000000 al estar apagado
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.c
+La herramienta Logic Analyzer no se pudo utilizar, debido a que en las versiones del software utilizadas (v5.4) la herramienta no está funcionando.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.d 
+¿Qué otras formas se les ocurren para poder estimar el tiempo que demora la función UT_delay?
+
+Analizar la función delay entrando al código de assembly, para ver cuantas líneas de código se utilizan.
+Conociendo la frecuencia del oscilador del procesador se puede conocer el tiempo en procesar cada línea de código, y así obtener el tiempo que demora el delay.
+Multiplicando la cantidad de ciclos de la función delay (500) con la cantidad de líneas de código de assembly utilizadas para cada ciclo y con la frecuencia 
+del reloj, se obtiene el tiempo que demora la función UT_delay.
+
