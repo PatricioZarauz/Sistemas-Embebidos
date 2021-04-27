@@ -1,23 +1,23 @@
 /**
-  Generated main.c file from MPLAB Code Configurator
+  WATCHDOG Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    main.c
+    watchdog.h
 
   @Summary
-    This is the generated main.c using PIC24 / dsPIC33 / PIC32MM MCUs.
+    This is the generated driver implementation file for the WATCHDOG driver using PIC24 / dsPIC33 / PIC32MM MCUs
 
   @Description
-    This source file provides main entry point for system initialization and application code development.
+    This header file provides implementations for driver APIs for WATCHDOG.
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.169.0
         Device            :  PIC32MM0256GPM064
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.50
-        MPLAB 	          :  MPLAB X v5.40
+        MPLAB             :  MPLAB X v5.40
 */
 
 /*
@@ -42,43 +42,42 @@
     TERMS.
 */
 
-/**
-  Section: Included Files
-*/
-#include "mcc_generated_files/system.h"
-#include "mcc_generated_files/pin_manager.h"
-//#include "utils/utils.h"
+#ifndef WATCHDOG_H
+#define	WATCHDOG_H
 
-#define ARRAY_SIZE 10
-
-
-int exampleData;
-char exampleArray[ARRAY_SIZE];
-
-int main(void) {
-    SYSTEM_Initialize();
-    
-    while(1){
-        //Parte e
-        LEDA_SetValue(BTN1_GetValue());
-        
-        //Parte f
-        /*if(BTN1_GetValue() == 1){
-            LEDA_Toggle();
-        }*/
-        
-        //Parte e
-        LEDB_SetValue(BTN2_GetValue());
-        
-        //Parte f
-        /*if(BTN2_GetValue() == 1){
-            LEDB_Toggle();
-        }*/
-        
-    }
-    return 1; 
+#define WATCHDOG_CLR_KEY 0x5743
+ 
+/* Enables Watch Dog Timer (WDT) using the software bit.
+ * @example
+ * <code>
+ * WATCHDOG_TimerSoftwareEnable();
+ * </code>
+ */
+inline static void WATCHDOG_TimerSoftwareEnable(void)
+{
+    WDTCONbits.ON = 1;
 }
+/* Disables Watch Dog Timer (WDT) using the software bit.
+ * @example
+ * <code>
+ * WATCHDOG_TimerSoftwareDisable();
+ * </code>
+ */
+inline static void WDT_TimerSoftwareDisable(void)
+{
+    WDTCONbits.ON = 0;
+}
+/* Clears the Watch Dog Timer (WDT).
+ * @example
+ * <code>
+ * WATCHDOG_TimerClear();
+ * </code>
+ */
+inline static void WATCHDOG_TimerClear(void)
+{
+    WDTCONbits.WDTCLRKEY = WATCHDOG_CLR_KEY;
+}
+#endif	/*WATCHDOG_H */
 /**
  End of File
 */
-

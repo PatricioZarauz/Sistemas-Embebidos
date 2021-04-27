@@ -1,23 +1,23 @@
 /**
-  Generated main.c file from MPLAB Code Configurator
+  @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
 
-  @Company
+  @Company:
     Microchip Technology Inc.
 
-  @File Name
-    main.c
+  @File Name:
+    system.h
 
-  @Summary
-    This is the generated main.c using PIC24 / dsPIC33 / PIC32MM MCUs.
+  @Summary:
+    This is the system.h file generated using PIC24 / dsPIC33 / PIC32MM MCUs
 
-  @Description
-    This source file provides main entry point for system initialization and application code development.
+  @Description:
+    This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.169.0
         Device            :  PIC32MM0256GPM064
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.50
-        MPLAB 	          :  MPLAB X v5.40
+        MPLAB             :  MPLAB X v5.40
 */
 
 /*
@@ -42,43 +42,63 @@
     TERMS.
 */
 
+#ifndef _XTAL_FREQ
+#define _XTAL_FREQ  8000000UL
+#endif
+#define WDT_CLR_KEY 0x5743
+
+#include "xc.h"
+#include "stdint.h"
+
+#ifndef SYSTEM_H
+#define	SYSTEM_H
 /**
-  Section: Included Files
-*/
-#include "mcc_generated_files/system.h"
-#include "mcc_generated_files/pin_manager.h"
-//#include "utils/utils.h"
-
-#define ARRAY_SIZE 10
-
-
-int exampleData;
-char exampleArray[ARRAY_SIZE];
-
-int main(void) {
-    SYSTEM_Initialize();
-    
-    while(1){
-        //Parte e
-        LEDA_SetValue(BTN1_GetValue());
-        
-        //Parte f
-        /*if(BTN1_GetValue() == 1){
-            LEDA_Toggle();
-        }*/
-        
-        //Parte e
-        LEDB_SetValue(BTN2_GetValue());
-        
-        //Parte f
-        /*if(BTN2_GetValue() == 1){
-            LEDB_Toggle();
-        }*/
-        
-    }
-    return 1; 
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Unlocks the write protected register to enable any write operation
+ *                  MCC GUI
+ * @Example
+    SYSTEM_RegUnlock();
+ */
+inline static void SYSTEM_RegUnlock(void)
+{
+    SYSKEY = 0x0; //write invalid key to force lock
+    SYSKEY = 0xAA996655; //write Key1 to SYSKEY
+    SYSKEY = 0x556699AA; //write Key2 to SYSKEY
 }
+
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Locks the write protected register to disable any write operation
+ *                  MCC GUI
+ * @Example
+    SYSTEM_RegLock();
+ */
+inline static void SYSTEM_RegLock(void)
+{
+   SYSKEY = 0x00000000; 
+}
+
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Initializes the device to the default states configured in the
+ *                  MCC GUI
+ * @Example
+    SYSTEM_Initialize(void);
+ */
+void SYSTEM_Initialize(void);
+#endif	/* SYSTEM_H */
 /**
  End of File
 */
-

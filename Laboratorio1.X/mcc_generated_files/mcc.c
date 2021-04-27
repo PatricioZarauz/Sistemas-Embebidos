@@ -1,23 +1,23 @@
 /**
-  Generated main.c file from MPLAB Code Configurator
+  @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
 
-  @Company
+  @Company:
     Microchip Technology Inc.
 
-  @File Name
-    main.c
+  @File Name:
+    mcc.c
 
-  @Summary
-    This is the generated main.c using PIC24 / dsPIC33 / PIC32MM MCUs.
+  @Summary:
+    This is the mcc.c file generated using PIC24 / dsPIC33 / PIC32MM MCUs
 
-  @Description
-    This source file provides main entry point for system initialization and application code development.
+  @Description:
+    The configuration contents of this file are moved to system.c and this file will be removed in future MCC releases. 
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.169.0
         Device            :  PIC32MM0256GPM064
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.50
-        MPLAB 	          :  MPLAB X v5.40
+        MPLAB             :  MPLAB X v5.40
 */
 
 /*
@@ -43,42 +43,5 @@
 */
 
 /**
-  Section: Included Files
-*/
-#include "mcc_generated_files/system.h"
-#include "mcc_generated_files/pin_manager.h"
-//#include "utils/utils.h"
-
-#define ARRAY_SIZE 10
-
-
-int exampleData;
-char exampleArray[ARRAY_SIZE];
-
-int main(void) {
-    SYSTEM_Initialize();
-    
-    while(1){
-        //Parte e
-        LEDA_SetValue(BTN1_GetValue());
-        
-        //Parte f
-        /*if(BTN1_GetValue() == 1){
-            LEDA_Toggle();
-        }*/
-        
-        //Parte e
-        LEDB_SetValue(BTN2_GetValue());
-        
-        //Parte f
-        /*if(BTN2_GetValue() == 1){
-            LEDB_Toggle();
-        }*/
-        
-    }
-    return 1; 
-}
-/**
  End of File
 */
-

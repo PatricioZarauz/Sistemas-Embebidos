@@ -1,23 +1,23 @@
 /**
-  Generated main.c file from MPLAB Code Configurator
+  @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
 
-  @Company
+  @Company:
     Microchip Technology Inc.
 
-  @File Name
-    main.c
+  @File Name:
+    clock.c
 
-  @Summary
-    This is the generated main.c using PIC24 / dsPIC33 / PIC32MM MCUs.
+  @Summary:
+    This is the clock.c file generated using PIC24 / dsPIC33 / PIC32MM MCUs
 
-  @Description
-    This source file provides main entry point for system initialization and application code development.
+  @Description:
+    This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.169.0
         Device            :  PIC32MM0256GPM064
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.50
-        MPLAB 	          :  MPLAB X v5.40
+        MPLAB             :  MPLAB X v5.40
 */
 
 /*
@@ -42,43 +42,23 @@
     TERMS.
 */
 
-/**
-  Section: Included Files
-*/
-#include "mcc_generated_files/system.h"
-#include "mcc_generated_files/pin_manager.h"
-//#include "utils/utils.h"
+#include "xc.h"
+#include "stdint.h"
+#include "clock.h"
+#include "system.h"
 
-#define ARRAY_SIZE 10
-
-
-int exampleData;
-char exampleArray[ARRAY_SIZE];
-
-int main(void) {
-    SYSTEM_Initialize();
-    
-    while(1){
-        //Parte e
-        LEDA_SetValue(BTN1_GetValue());
-        
-        //Parte f
-        /*if(BTN1_GetValue() == 1){
-            LEDA_Toggle();
-        }*/
-        
-        //Parte e
-        LEDB_SetValue(BTN2_GetValue());
-        
-        //Parte f
-        /*if(BTN2_GetValue() == 1){
-            LEDB_Toggle();
-        }*/
-        
-    }
-    return 1; 
+void CLOCK_Initialize(void)
+{
+    SYSTEM_RegUnlock();
+    // ORPOL disabled; SIDL disabled; SRC SOSC; TUN Center frequency; POL disabled; ON disabled; 
+    OSCTUN = 0x00;
+    // SBOREN disabled; VREGS disabled; RETEN disabled; 
+    PWRCON = 0x00;
+    //CF No Clock Failure has been detected;; FRCDIV FRC/1; SLPEN Device will enter Idle mode when a WAIT instruction is issued; NOSC FRCDIV; SOSCEN disabled; CLKLOCK Clock and PLL selections are not locked and may be modified; OSWEN Switch is Complete; 
+    OSCCON = (0x00);
+    SYSTEM_RegLock();
+    // ON disabled; DIVSWEN disabled; RSLP disabled; ROSEL SYSCLK; OE disabled; SIDL disabled; RODIV 0; 
+    REFO1CON = 0x00;
+    // ROTRIM 0; 
+    REFO1TRIM = 0x00;
 }
-/**
- End of File
-*/
-
