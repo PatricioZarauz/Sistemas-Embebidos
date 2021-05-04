@@ -47,7 +47,8 @@
 */
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/pin_manager.h"
-//#include "utils/utils.h"
+#include "utils/utils.h"
+#include "platform/buttons.h"
 
 #define ARRAY_SIZE 10
 
@@ -58,22 +59,56 @@ char exampleArray[ARRAY_SIZE];
 int main(void) {
     SYSTEM_Initialize();
     
+    LEDA_SetValue(0);
+    LEDB_SetValue(0);
+    
+    BTN1_SetInterruptHandler(SetBTN1);
+    BTN2_SetInterruptHandler(SetBTN2);
+    
     while(1){
-        //Parte e
-        LEDA_SetValue(BTN1_GetValue());
-        
-        //Parte f
-        /*if(BTN1_GetValue() == 1){
-            LEDA_Toggle();
-        }*/
+        //----------------------------------------------------------------------
+        /*PRIMERA PARTE*/
         
         //Parte e
-        LEDB_SetValue(BTN2_GetValue());
+        //LEDA_SetValue(BTN1_GetValue());
+        //LEDB_SetValue(BTN2_GetValue());
         
         //Parte f
-        /*if(BTN2_GetValue() == 1){
-            LEDB_Toggle();
-        }*/
+        /*
+        if(BTN1_GetValue() == 1){
+            UT_delay();
+            if(BTN1_GetValue() == 0){
+                LEDA_Toggle();
+            }
+        }
+        
+        if(BTN2_GetValue() == 1){
+            UT_delay();
+            if(BTN2_GetValue() == 0){
+                LEDB_Toggle();
+            }
+        }
+        */
+        
+        //----------------------------------------------------------------------
+        
+        /*SEGUNDA PARTE*/
+        if (ReadButton(BTN1)){
+            LEDA_SetHigh();
+            UT_delayms(2000);
+            LEDA_SetLow();
+            //primer ejercicio
+            //LEDA_Toggle();
+            ResetButton(BTN1);
+        }
+        if (ReadButton(BTN2)){
+            LEDB_SetHigh();
+            UT_delayms(2000);
+            LEDB_SetLow();
+            //primer ejercicio
+            //LEDB_Toggle();
+            ResetButton(BTN2);
+        }
         
     }
     return 1; 

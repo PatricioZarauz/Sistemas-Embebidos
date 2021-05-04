@@ -51,6 +51,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "tmr2.h"
 #include "watchdog.h"
 #include "interrupt_manager.h"
 #include "exceptions.h"

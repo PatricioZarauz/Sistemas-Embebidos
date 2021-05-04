@@ -2,7 +2,7 @@
 #define _UTILS_H
 
 
-#define UT_DELAY_CYCLES 500;
-void UT_delay(void);
+#define UT_DELAY_CYCLES 30000;
+void UT_delayms(int n);
 
 #endif

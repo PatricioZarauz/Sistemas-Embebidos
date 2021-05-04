@@ -999,6 +999,128 @@ inline static void BTN1_SetValue(bool value)
 */
 void PIN_MANAGER_Initialize (void);
 
+/**
+  @Summary
+    Callback for BTN2 Pin.
+
+  @Description
+    This routine is callback for BTN2 Pin
+
+  @Param
+    None.
+
+  @Returns
+    None
+ 
+ 
+  @Example 
+    <code>
+        BTN2_SetInterruptHandler(&BTN2_CallBack);
+    </code>
+*/
+void BTN2_CallBack(void);
+
+/**
+  @Summary
+    Callback for BTN1 Pin.
+
+  @Description
+    This routine is callback for BTN1 Pin
+
+  @Param
+    None.
+
+  @Returns
+    None
+ 
+ 
+  @Example 
+    <code>
+        BTN1_SetInterruptHandler(&BTN1_CallBack);
+    </code>
+*/
+void BTN1_CallBack(void);
+
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BTN2_SetInterruptHandler(&BTN2_CallBack);
+    </code>
+*/
+void BTN2_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BTN2_SetIOCInterruptHandler(&BTN2_CallBack);
+    </code>
+*/
+void __attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse BTN2_SetInterruptHandler instead."))) BTN2_SetIOCInterruptHandler(void *handler);
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BTN1_SetInterruptHandler(&BTN1_CallBack);
+    </code>
+*/
+void BTN1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BTN1_SetIOCInterruptHandler(&BTN1_CallBack);
+    </code>
+*/
+void __attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse BTN1_SetInterruptHandler instead."))) BTN1_SetIOCInterruptHandler(void *handler);
 
 
 #endif
