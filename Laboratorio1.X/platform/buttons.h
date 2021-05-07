@@ -13,7 +13,7 @@ void SetBTN2(void);
 bool ReadButton(enum buttons btn);
 void ResetButton(enum buttons btn);
 
-#endif /* _EXAMPLE_FILE_NAME_H */
+#endif /* _BUTTONS_H */
 
 /* *****************************************************************************
  End of File
