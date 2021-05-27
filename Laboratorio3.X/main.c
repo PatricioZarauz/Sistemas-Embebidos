@@ -50,6 +50,8 @@
 #include "utils/utils.h"
 #include "platform/buttons.h"
 #include "mcc_generated_files/usb/usb_device_cdc.h"
+#include "platform/LED_A_intermitente.h"
+#include"app/app.h"
 
 #define ARRAY_SIZE 10
 
@@ -59,10 +61,16 @@ char exampleArray[ARRAY_SIZE];
 
 int main(void) {
     SYSTEM_Initialize();
+    Timer_state_Initialize();
 
     while (1) {
+        IsUSBConected();
         //Ejemplo de funcion eco por el puerto serial
-        MCC_USB_CDC_DemoTasks();
+        //MCC_USB_CDC_DemoTasks();
+        
+        //Ejemplo de LED A prendida 400ms y apagada 800ms
+        //LED_A_intermitente();
+        app();
     }
     return 1;
 }

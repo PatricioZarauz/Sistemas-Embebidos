@@ -76,9 +76,9 @@ void TMR2_CallBack(void);
 typedef struct _TMR_OBJ_STRUCT
 {
     /* Timer Elapsed */
-    volatile bool           timerElapsed;
+    volatile bool timerElapsed;
     /*Software Counter value*/
-    volatile uint16_t        count;
+    volatile uint32_t count;
 
 } TMR_OBJ;
 
