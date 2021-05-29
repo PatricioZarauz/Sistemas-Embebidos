@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-static uint8_t readBuffer[64];
-static uint8_t writeBuffer[64];
+static uint8_t readBuffer[64]; //SACAR
+static uint8_t writeBuffer[64]; //SACAR
 static bool USBConected;
 
 void USBStatusUpdater(void) {

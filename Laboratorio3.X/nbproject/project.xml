@@ -15,6 +15,7 @@
             <sourceRootList>
                 <sourceRootElem>platform</sourceRootElem>
                 <sourceRootElem>app</sourceRootElem>
+                <sourceRootElem>system</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
