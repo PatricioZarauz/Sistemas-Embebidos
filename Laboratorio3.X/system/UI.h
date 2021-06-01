@@ -2,12 +2,6 @@
 #define _UI_H
 
 typedef enum {
-    UI_OPTION_NUM,
-    UI_OPTION_ALPHANUM,
-    UI_OPTION_ALPHA,
-} ui_options_t;
-
-typedef enum {
     UI_MENU_STATE_INIT_SHOW,
     UI_MENU_STATE_INIT_WAIT,
     UI_MENU_STATE_OPTIONS_SHOW,
@@ -55,7 +49,7 @@ void UI_showMenu(void);
 
 bool UI_waitForInput(uint8_t *dest);
 
-bool UI_checkValidOption(uint8_t *src, ui_options_t type, uint32_t min, uint32_t max);
+bool UI_checkValidOption(uint8_t *src, uint32_t min, uint32_t max);
 
 bool UI_setTimedate(uint8_t *src);
 

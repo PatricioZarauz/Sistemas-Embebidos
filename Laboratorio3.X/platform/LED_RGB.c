@@ -1,7 +1,7 @@
 #include "LED_RGB.h"
 #include "LEDs_RGB/WS2812.h"
 
-static ws2812_t LEDRing[8];
+static ws2812_t LEDRing[AMOUNT_RGB_LED];
 
 void RGB_setLedColor(uint8_t index, enum rgb_colors color) {
     switch (color) {

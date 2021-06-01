@@ -36,7 +36,7 @@
 #include "UI.h"
 #include "../mcc_generated_files/usb/usb.h"
 #include "../utils/USB.h"
-#include "../utils/appTime.h"
+#include "../platform/appTime.h"
 #include "register.h"
 
 
@@ -84,7 +84,7 @@ void UI_showMenu(void) {
                 }
                 break;
             case( UI_MENU_STATE_OPTIONS_CHECK):
-                if ((UI_checkValidOption(rxData, UI_OPTION_NUM, 1, 3))) {
+                if ((UI_checkValidOption(rxData, 1, 3))) {
                     menuState = UI_MENU_STATE_OPTIONS_CHECK + atoi(rxData);
                 } else {
                     menuState = UI_MENU_STATE_OPTIONS_SHOW;
@@ -100,8 +100,9 @@ void UI_showMenu(void) {
                     menuState = UI_MENU_STATE_OPTIONS_SHOW;
                 }
                 break;
-            case( UI_MENU_STATE_GET_LAST_UPDATE):
-                if (USBSend((uint8_t*)getLatestUpdateTime())){
+            case( UI_MENU_STATE_GET_LAST_UPDATE):;
+                uint8_t *res =  getLatestUpdateTime();
+                if (USBSend(res)){
                     memset(rxData, 0, sizeof (rxData));
                     menuState = UI_MENU_STATE_OPTIONS_SHOW;
                 }
@@ -123,44 +124,18 @@ bool UI_waitForInput(uint8_t *dest) {
     return false;
 }
 
-bool UI_checkValidOption(uint8_t *src, ui_options_t type, uint32_t min, uint32_t max) {
+bool UI_checkValidOption(uint8_t *src, uint32_t min, uint32_t max) {
     uint32_t intValue;
     uint32_t i;
 
-    switch (type) {
-        case UI_OPTION_NUM:
-            for (i = 0; i < strlen(src); i++) {
-                if (isdigit(src[i]) == 0) {
-                    return false;
-                }
-            }
-            intValue = atoi(src);
-            if ((intValue < min) || (intValue > max)) {
-                return false;
-            }
-            break;
-
-        case UI_OPTION_ALPHANUM:
-            for (i = 0; i < strlen(src); i++) {
-                if (isalnum(src[i]) == 0) {
-                    return false;
-                }
-            }
-            if (strlen(src) > max) {
-                return false;
-            }
-            break;
-
-        case UI_OPTION_ALPHA:
-            for (i = 0; i < strlen(src); i++) {
-                if (isalpha(src[i]) == 0) {
-                    return false;
-                }
-            }
-            if (strlen(src) > max) {
-                return false;
-            }
-            break;
+    for (i = 0; i < strlen(src); i++) {
+        if (isdigit(src[i]) == 0) {
+            return false;
+        }
+    }
+    intValue = atoi(src);
+    if ((intValue < min) || (intValue > max)) {
+        return false;
     }
     return true;
 }
@@ -182,7 +157,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_SEC_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 0, 59)) {
+            if (UI_checkValidOption(src, 0, 59)) {
                 date.tm_sec = atoi(src);
                 dateState = UI_DATE_STATE_PROMT_MIN;
             } else {
@@ -201,7 +176,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_MIN_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 0, 59)) {
+            if (UI_checkValidOption(src, 0, 59)) {
                 date.tm_min = atoi(src);
                 dateState = UI_DATE_STATE_PROMT_HR;
             } else {
@@ -220,7 +195,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_HR_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 0, 23)) {
+            if (UI_checkValidOption(src, 0, 23)) {
                 date.tm_hour = atoi(src);
                 dateState = UI_DATE_STATE_PROMT_DAY;
             } else {
@@ -228,7 +203,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_PROMT_DAY:
-            if (USBSend((uint8_t*) textoHora)) {
+            if (USBSend((uint8_t*) textoDia)) {
                 memset(src, 0, sizeof (src));
                 dateState = UI_DATE_STATE_DAY_WAIT;
             }
@@ -239,7 +214,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_DAY_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 1, 31)) {
+            if (UI_checkValidOption(src, 1, 31)) {
                 date.tm_mday = atoi(src);
                 dateState = UI_DATE_STATE_PROMT_MON;
             } else {
@@ -247,7 +222,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_PROMT_MON:
-            if (USBSend((uint8_t*) textoHora)) {
+            if (USBSend((uint8_t*) textoMes)) {
                 memset(src, 0, sizeof (src));
                 dateState = UI_DATE_STATE_MON_WAIT;
             }
@@ -258,7 +233,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_MON_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 1, 12)) {
+            if (UI_checkValidOption(src, 1, 12)) {
                 date.tm_mon = atoi(src) - 1;
                 dateState = UI_DATE_STATE_PROMT_YR;
             } else {
@@ -266,7 +241,7 @@ bool UI_setTimedate(uint8_t *src) {
             }
             break;
         case UI_DATE_STATE_PROMT_YR:
-            if (USBSend((uint8_t*) textoHora)) {
+            if (USBSend((uint8_t*) textoAno)) {
                 memset(src, 0, sizeof (src));
                 dateState = UI_DATE_STATE_YR_WAIT;
             }
@@ -280,7 +255,7 @@ bool UI_setTimedate(uint8_t *src) {
             if (isValidYear(atoi(src))) {
                 date.tm_year = atoi(src) - 1900;
                 dateState = UI_DATE_STATE_PROMT_SEC;
-                setTime(date);
+                setTime(&date);
                 return true;
             } else {
                 dateState = UI_DATE_STATE_PROMT_YR;
@@ -306,8 +281,8 @@ bool UI_setRGBLED(uint8_t *src) {
             }
             break;
         case UI_RGB_LED_STATE_LED_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 1, 8)) {
-                setLatestLED(src);
+            if (UI_checkValidOption(src, 1, 8)) {
+                setLatestLED(atoi(src) - 1);
                 rgbLedState = UI_RGB_LED_STATE_PROMT_COLOR;
             } else {
                 rgbLedState = UI_RGB_LED_STATE_PROMT_LED;
@@ -325,8 +300,8 @@ bool UI_setRGBLED(uint8_t *src) {
             }
             break;
         case UI_RGB_LED_STATE_COLOR_CHECK:
-            if (UI_checkValidOption(src, UI_OPTION_NUM, 0, 4)) {
-                setLatestColor(src);
+            if (UI_checkValidOption(src, 0, 4)) {
+                setLatestColor(atoi(src));
                 setRGBLEDAndTime();
                 rgbLedState = UI_RGB_LED_STATE_PROMT_LED;
                 return true;

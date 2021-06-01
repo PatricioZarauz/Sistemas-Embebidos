@@ -1,11 +1,15 @@
 #ifndef _APP_TIME_H    /* Guard against multiple inclusion */
 #define _APP_TIME_H
 
+
 #include <time.h>
 
-void setTime(struct tm newTimeDate);
-void updateTime(void);
-time_t getCurrentTime(void);
+
+void APP_updateTime(void);
+
+time_t APP_getTimestamp(void);
+
+void setTime(struct tm *newTimeDate);
 
 #endif /* _APP_TIME_H */
 

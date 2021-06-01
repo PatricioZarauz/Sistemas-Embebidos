@@ -1,3 +1,4 @@
+#include "LED_A_intermitente.h"
 #include "../utils/utils.h"
 #include "../mcc_generated_files/pin_manager.h"
 
@@ -20,24 +21,23 @@ void Timer_state_Initialize(void) {
 
 
 void LED_A_intermitente() {
-    
-    switch (LEDA_GetValue()) {
-        case 1:
-            if (UT_delayms(&timer, 400)) {
-                UT_delayms(&timer, 800);
-                LEDA_SetLow();
-            }
-            break;
-        case 0:
-            if (UT_delayms(&timer, 800)) {
-                UT_delayms(&timer, 400);
-                LEDA_SetHigh();
-            }
-            break;
-        default:
-            ;
-    }
+    static leds_blink_state_t leds_blinkState=LEDS_BLINK_A_ON;
 
+    switch(leds_blinkState){
+        case LEDS_BLINK_A_ON:
+            LEDA_SetHigh( );
+            if(UT_delayms( &timer, LEDS_TIME_ON_ms )){
+                leds_blinkState=LEDS_BLINK_A_OFF;
+            }
+            break;
+
+        case LEDS_BLINK_A_OFF:
+            LEDA_SetLow( );
+            if(UT_delayms( &timer, LEDS_TIME_OFF_ms )){
+                leds_blinkState=LEDS_BLINK_A_ON;
+            }
+            break;
+    }
 }
 
 

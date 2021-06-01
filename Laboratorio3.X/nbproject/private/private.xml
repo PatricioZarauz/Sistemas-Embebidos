@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/system/register.c</file>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/system/UI.c</file>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/main.c</file>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/utils/USB.c</file>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/system/UI.h</file>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/utils/appTime.c</file>
-            <file>file:/C:/Users/FIT/Documents/UCU/Sistemas%20Embebidos/Lab2021/Laboratorio3.X/platform/LED_A_Intermitente.c</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/system/UI.h</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/main.c</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/system/register.h</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/platform/appTime.c</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/utils/USB.c</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/platform/appTime.h</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/mcc_generated_files/rtcc.c</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/system/UI.c</file>
+            <file>file:/C:/Users/FIT/Desktop/Sistemas-Embebidos-4c51969f537b71c9bc7b42a53f263e83b396f9cd/Laboratorio3.X/system/register.c</file>
         </group>
     </open-files>
 </project-private>

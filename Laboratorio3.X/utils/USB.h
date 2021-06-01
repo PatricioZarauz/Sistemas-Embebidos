@@ -30,8 +30,8 @@ bool IsUSBConected(void);
 
 void setUSBConected(bool state);
 
-uint8_t USBReceive( uint8_t *p_dest );
-bool USBSend( uint8_t *p_src );
+uint8_t USBReceive( uint8_t *dest );
+bool USBSend( uint8_t *src );
 
 
 #endif /* _EXAMPLE_FILE_NAME_H */

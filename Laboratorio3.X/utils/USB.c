@@ -4,8 +4,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-static uint8_t readBuffer[64]; //SACAR
-static uint8_t writeBuffer[64]; //SACAR
 static bool USBConected;
 
 void USBStatusUpdater(void) {
@@ -25,13 +23,13 @@ void setUSBConected(bool state) {
     USBConected = state;
 }
 
-uint8_t USBReceive(uint8_t *destination) {
-    return getsUSBUSART(destination, 64);
+uint8_t USBReceive(uint8_t *dest) {
+    return getsUSBUSART(dest, 64);
 }
 
-bool USBSend(uint8_t *source) {
+bool USBSend(uint8_t *src) {
     if (USBUSARTIsTxTrfReady()) {
-        putsUSBUSART(source);
+        putsUSBUSART(src);
         return true;
     } else {
         return false;

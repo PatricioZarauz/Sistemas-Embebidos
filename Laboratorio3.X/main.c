@@ -51,19 +51,13 @@
 #include "platform/buttons.h"
 #include "mcc_generated_files/usb/usb_device_cdc.h"
 #include "platform/LED_A_intermitente.h"
-#include "utils/USB.h"
-#include "utils/appTime.h"
 #include "system/UI.h"
-
-#define ARRAY_SIZE 10
-
-
-int exampleData;
-char exampleArray[ARRAY_SIZE];
+#include "platform/appTime.h"
 
 int main(void) {
     SYSTEM_Initialize();
     Timer_state_Initialize();
+    TMR2_SetInterruptHandler(&UT_incrementCounter);
 
     while (1) {
         //Ejemplo de funcion eco por el puerto serial
@@ -77,7 +71,6 @@ int main(void) {
         updateTime();
         
         UI_showMenu();
-        
     }
     return 1;
 }
